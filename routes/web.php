@@ -1,6 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\roleController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Grade_teacherController;
+use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\Teacher_classController;
+use App\Http\Controllers\Teacher_roleController;
+use App\Http\Controllers\Student_subjectController;
+use App\Http\Controllers\Subject_teacherController;
+use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\Auth\CustomAuthController;
 
 /*
