@@ -17,7 +17,7 @@ class CreateAssignmentStudentTable extends Migration
             $table->id();
             $table->unsignedBigInteger('assignment_id');
             $table->unsignedBigInteger('student_id');
-            $table->bigInteger('submision');
+            $table->string('submision');
             $table->foreign('student_id')->references('id')->on('Student')->onDelete('cascade');
             $table->foreign('assignment_id')->references('id')->on('Assignment')->onDelete('cascade');
             $table->unique(['student_id','assignment_id']);

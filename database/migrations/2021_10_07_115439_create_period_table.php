@@ -16,8 +16,8 @@ class CreatePeriodTable extends Migration
         Schema::create('Period', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('links');
-            $table->json('notes');
+            $table->json('links')->nullable();
+            $table->json('notes')->nullable();
             $table->unsignedBigInteger('timetable_id');
             $table->unsignedBigInteger('class_id');
             $table->timestamps();
