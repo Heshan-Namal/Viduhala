@@ -15,7 +15,7 @@ use App\Http\Controllers\Student_subjectController;
 use App\Http\Controllers\Subject_teacherController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\Auth\CustomAuthController;
-
+use App\Http\Controllers\AssController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,10 +26,10 @@ use App\Http\Controllers\Auth\CustomAuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
+
+// Route::get('/', function () {
+//     return view('dash');
+// });
 
 
 //Auth
@@ -155,7 +155,11 @@ Route::post('updateperiod/{class_id}/{day}',[PeriodController::class,'updateperi
 Route::delete('destroy_a_timetable/{id}',[PeriodController::class,'destroy_a_timetable']);
 Route::get('show_periods/{class_id}/{day}',[PeriodController::class,'show_periods']);
 
-
-
-
+//Assesments Routes
+Route::get('/ass/index',[AssController::class,'index'])->name('ass.index');
+Route::get('/ass/create',[AssController::class,'create'])->name('ass.create');
+Route::post('/ass/store',[AssController::class,'store'])->name('ass.store');
+Route::get('/ass/{id}/edit',[AssController::class,'edit'])->name('ass.edit');
+Route::put('/ass/{id}',[AssController::class,'update'])->name('ass.update');
+Route::post('/ass/{id}/status',[AssController::class,'changeStatus'])->name('ass.status');
 

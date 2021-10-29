@@ -56,17 +56,15 @@ class Subject_teacherController extends Controller
         return $subject_teacher->delete();
     }
 
+    // using teacher id get techer own subjects
     public function mySubjects($id){
-        // $mysubject=Subject::join('Subject_teacher','Subject_teacher.subject_id','=','Subject.id')
-        // ->join('Subject_class','Subject_class.subject_id','=','Subject_teacher.subject_id')
-        // ->join('Class','class.id','=','Subject_class.class_id')
-        // ->get(['Subject.name','Class.name']);
         $data=DB::table('Subject_teacher')
         ->where('Subject_teacher.teacher_id','=',$id)
         ->join('Subject','Subject.id','=','Subject_teacher.subject_id')
         ->join('Subject_class','Subject_class.subject_id','=','Subject.id')
         ->join('Class','Class.id','=','Subject_class.class_id')
-        ->select('Subject.name as subject','Class.name as class')
+        ->select('Subject.name as subject','Class.name as class','Subject.id as subjectID')
+        ->orderBy('Class.name')
         ->get();
         return $data;
     }

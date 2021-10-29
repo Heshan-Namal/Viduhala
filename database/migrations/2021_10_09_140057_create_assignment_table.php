@@ -16,13 +16,13 @@ class CreateAssignmentTable extends Migration
         Schema::create('Assignment', function (Blueprint $table) {
             $table->id();
             $table->longText('title');
-            $table->bigInteger('assignments');
+            $table->longText('description');
+            $table->string('assignments');
+            $table->string('status')->default('Pending');
             $table->unsignedBigInteger('subject_id');
-            $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
             $table->foreign('subject_id')->references('id')->on('Subject')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('Class')->onDelete('cascade');
             $table->foreign('teacher_id')->references('id')->on('Teacher')->onDelete('cascade');
         });
     }

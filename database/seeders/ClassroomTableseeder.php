@@ -1,4 +1,7 @@
 <?php
+
+namespace Database\Seeders;
+
 use App\Models\Classroom;
 use Illuminate\Database\Seeder;
 
@@ -35,6 +38,30 @@ class ClassroomTableseeder extends Seeder
                 'admin_id'   =>16440,
                 'teacher_id' =>333,
                 'grade_id' =>555
+            ],
+            [
+                'id'         => 1004,
+                'name'       =>'6-A',
+                'num_of_student'      =>45,
+                'admin_id'   =>16440,
+                'teacher_id' =>333,
+                'grade_id' =>666
+            ],
+            [
+                'id'         => 1005,
+                'name'       =>'7-A',
+                'num_of_student'      =>45,
+                'admin_id'   =>16440,
+                'teacher_id' =>333,
+                'grade_id' =>777
+            ],
+            [
+                'id'         => 1006,
+                'name'       =>'7-B',
+                'num_of_student'      =>45,
+                'admin_id'   =>16440,
+                'teacher_id' =>333,
+                'grade_id' =>777
             ],
 
             ];

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Teacher_role;
 use Illuminate\Database\Seeder;
 

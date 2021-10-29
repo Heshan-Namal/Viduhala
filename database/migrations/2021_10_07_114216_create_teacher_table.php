@@ -16,9 +16,11 @@ class CreateTeacherTable extends Migration
         Schema::create('Teacher', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('img')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('contact');
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('Admin')->onDelete('cascade');
             $table->rememberToken();
