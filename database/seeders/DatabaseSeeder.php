@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,8 @@ class DatabaseSeeder extends Seeder
             Teacher_roleTableseeder::class,
             TimetableTableseeder::class,
             SubjectTableseeder::class,
-            Subject_teacherTableseeder::class
+            Subject_teacherTableseeder::class,
+            Subject_classroomTableseeder::class
         ]);
     }
 }

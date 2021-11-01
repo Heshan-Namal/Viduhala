@@ -34,6 +34,11 @@ class Subject_teacherTableseeder extends Seeder
                 'subject_id'   =>1,
                 'teacher_id' =>222
             ],
+            [
+                
+                'subject_id'   =>6,
+                'teacher_id' =>333
+            ],
 
             ];
             Subject_teacher::insert($subject_teacher);

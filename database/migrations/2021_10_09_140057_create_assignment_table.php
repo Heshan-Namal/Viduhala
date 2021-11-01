@@ -19,11 +19,11 @@ class CreateAssignmentTable extends Migration
             $table->longText('description');
             $table->string('assignments');
             $table->string('status')->default('Pending');
+            $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('subject_id');
-            $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
+            $table->foreign('class_id')->references('id')->on('Class')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('Subject')->onDelete('cascade');
-            $table->foreign('teacher_id')->references('id')->on('Teacher')->onDelete('cascade');
         });
     }
 

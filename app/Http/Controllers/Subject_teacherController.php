@@ -63,9 +63,17 @@ class Subject_teacherController extends Controller
         ->join('Subject','Subject.id','=','Subject_teacher.subject_id')
         ->join('Subject_class','Subject_class.subject_id','=','Subject.id')
         ->join('Class','Class.id','=','Subject_class.class_id')
-        ->select('Subject.name as subject','Class.name as class','Subject.id as subjectID')
+        ->select('Subject.name as subject','Class.name as class','Class.id as classid','Subject.id as subjectid')
         ->orderBy('Class.name')
         ->get();
-        return $data;
+        //return $data;
+        return view('Teacher.subjects',compact('data'));
+        //return view('Ass.index',compact('assments'));
+    }
+
+
+    public function subjectMatirial($classid,$subjectid){
+        
+        return view('Teacher.lecmatirial',compact(['classid','subjectid']));
     }
 }

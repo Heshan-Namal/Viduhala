@@ -46,6 +46,12 @@ class SubjectTableseeder extends Seeder
                 'admin_id'   =>16440,
                 'grade_id' =>777
             ],
+            [
+                'id'=>6,
+                'name'=>'Sinhala',
+                'admin_id'   =>16440,
+                'grade_id' =>555
+            ],
 
             ];
             Subject::insert($subject);

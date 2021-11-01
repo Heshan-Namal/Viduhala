@@ -27,9 +27,9 @@ use App\Http\Controllers\AssController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dash');
-// });
+Route::get('/', function () {
+    return view('layouts.admin');
+});
 
 
 //Auth
@@ -140,7 +140,9 @@ Route::post('addsubject_teacher',[Subject_teacherController::class,'addsubject_t
 Route::put('updatesubject_teacher/{id}',[Subject_teacherController::class,'updatesubject_teacher']);
 Route::delete('destroy_a_subject_teacher/{id}',[Subject_teacherController::class,'destroy_a_subject_teacher']);
 //get specific teacher subject name  and class name
-Route::get('mySubjects/{id}',[Subject_teacherController::class,'mySubjects']);
+Route::get('mySubjects/{id}',[Subject_teacherController::class,'mySubjects'])->name('teacher.subjects');
+Route::get('mySubjects/{classid}/{subjectid}/matirial',[Subject_teacherController::class,'subjectMatirial'])->name('teacher.matirial');
+
 
 // Timetable routes
 Route::post('addtimetable',[TimetableController::class,'addtimetable']);
@@ -156,9 +158,9 @@ Route::delete('destroy_a_timetable/{id}',[PeriodController::class,'destroy_a_tim
 Route::get('show_periods/{class_id}/{day}',[PeriodController::class,'show_periods']);
 
 //Assesments Routes
-Route::get('/ass/index',[AssController::class,'index'])->name('ass.index');
-Route::get('/ass/create',[AssController::class,'create'])->name('ass.create');
-Route::post('/ass/store',[AssController::class,'store'])->name('ass.store');
+Route::get('/ass/{classid}/{subjectid}/index',[AssController::class,'index'])->name('ass.index');
+Route::get('/ass/{classid}/{subjectid}/create',[AssController::class,'create'])->name('ass.create');
+Route::post('/ass/{classid}/{subjectid}/store',[AssController::class,'store'])->name('ass.store');
 Route::get('/ass/{id}/edit',[AssController::class,'edit'])->name('ass.edit');
 Route::put('/ass/{id}',[AssController::class,'update'])->name('ass.update');
 Route::post('/ass/{id}/status',[AssController::class,'changeStatus'])->name('ass.status');

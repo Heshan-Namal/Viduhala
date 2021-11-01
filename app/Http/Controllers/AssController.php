@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AssStore;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssController extends Controller
 {
-    public function create(Request $req)
+    public function create($classid,$subjectid)
     {
         
-        
-        return view('Ass.create');
+        //return $classid;
+        return view('Ass.create',compact(['classid','subjectid']));
         //dd($request);
     }
-    public function store(AssStore $req)
+    public function store(AssStore $req,$classid,$subjectid)
     {
         //return dd($req->assignments->getClientOriginalName());
         $path=$req->assignments;
@@ -26,18 +27,22 @@ class AssController extends Controller
                 'title'=>$req->title,
                 'description'=>$req->description,
                 'assignments'=>$name,
-                'subject_id'=>$req->subject_id,
-                'teacher_id'=>$req->teacher_id
+                'class_id'=>$classid,
+                'subject_id'=>$req->subjectid
             ]
             );
-        return redirect()->route('ass.index')->with('message','Assignment added successfully');
+        return redirect()->route('ass.index',[$classid,$subjectid])->with('message','Assignment added successfully');
         
     }
-    public function index(Request $req)
+    public function index($classid,$subjectid)
     {
+        $assments=DB::table('Assignment')
+        ->where('Assignment.class_id','=',$classid)
+        ->where('Assignment.subject_id','=',$subjectid)
+        ->get();
         
-        $assments=Assignment::get();
-        return view('Ass.index',compact('assments'));
+        //$assments=Assignment::get();
+        return view('Ass.index',compact(['assments','classid','subjectid']));
         //dd($request);
     }
 
@@ -69,11 +74,14 @@ class AssController extends Controller
         $ass->title=$req->title;
         $ass->description=$req->description;
         $ass->assignments=$name;
+        $classid=$req->class_id;
+        $subjectid=$req->subject_id;
         $ass->save();
         //return dd($req->assignments->getClientOriginalName());
         
-        return redirect()->route('ass.index')->with('message','Assignment Updated successfully');
+        return redirect()->route('ass.index',[$classid,$subjectid])->with('message','Assignment Updated successfully');
         
+
     }
 
 
