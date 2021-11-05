@@ -1,7 +1,9 @@
-@extends('app')
-
+@foreach($detail as $key=> $d)
+@extends('layouts.teacher_matirial')
+@endforeach
 @section('content')
 <div class="container">
+  <main class="py-4">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -32,7 +34,8 @@
     </tr>
   </thead>
   <tbody>
-    @if(count($assments)>0)
+  @if($assments->count()>0)
+      
       @foreach($assments as $key=> $ass)
     <tr>
       <th scope="row">{{$key+1}}</th>
@@ -40,7 +43,7 @@
       <td>{{$ass->description}}</></td> 
       <td><a class="Link" href="http://127.0.0.1:8000/Ass/{{$ass->assignments}}">{{$ass->assignments}}</a></td>
       <td>{{$ass->status}}</></td>
-      <td><a href="{{route('ass.edit',$ass->id)}}"><button class="btn btn-primary btn-sm">Edit</button></a> </td>
+      <td><a href="{{route('ass.edit',[$classid,$subjectid,$ass->id])}}"><button class="btn btn-primary btn-sm">Edit</button></a> </td>
       <td><button class="btn btn-danger btn-sm" onclick="document.getElementById('id01').style.display='block'">Delete</button></></td> 
       
       <form action="{{route('ass.status',$ass->id)}}" method="POST">@csrf
@@ -53,34 +56,19 @@
         </td>
 
       </form>
-      
-
-      <!-- <div id="id01" class="modal">
-          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-          <form class="modal-content" action="/action_page.php">
-            <div class="container">
-              <h1>Delete Account</h1>
-              <p>Are you sure you want to delete your account?</p>
-            
-              <div class="clearfix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
-              </div>
-            </div>
-        </form>
-        </div> -->
     </tr>
+  
     @endforeach
-
-
     @else  
     <p>No Assesments assign yet</p>
     @endif
+    
   </tbody>
 </table>
                 </div>
             </div>
         </div>
     </div>
+  </main>
 </div>
 @endsection

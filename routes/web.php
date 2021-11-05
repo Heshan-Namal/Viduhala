@@ -16,6 +16,9 @@ use App\Http\Controllers\Subject_teacherController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\AssController;
+use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\QuizController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +31,7 @@ use App\Http\Controllers\AssController;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return view('front.teacher.dashboard');
 });
 
 
@@ -141,7 +144,7 @@ Route::put('updatesubject_teacher/{id}',[Subject_teacherController::class,'updat
 Route::delete('destroy_a_subject_teacher/{id}',[Subject_teacherController::class,'destroy_a_subject_teacher']);
 //get specific teacher subject name  and class name
 Route::get('mySubjects/{id}',[Subject_teacherController::class,'mySubjects'])->name('teacher.subjects');
-Route::get('mySubjects/{classid}/{subjectid}/matirial',[Subject_teacherController::class,'subjectMatirial'])->name('teacher.matirial');
+//Route::get('mySubjects/{classid}/{subjectid}/matirial',[Subject_teacherController::class,'subjectMatirial'])->name('teacher.matirial');
 
 
 // Timetable routes
@@ -157,11 +160,27 @@ Route::post('updateperiod/{class_id}/{day}',[PeriodController::class,'updateperi
 Route::delete('destroy_a_timetable/{id}',[PeriodController::class,'destroy_a_timetable']);
 Route::get('show_periods/{class_id}/{day}',[PeriodController::class,'show_periods']);
 
+
 //Assesments Routes
 Route::get('/ass/{classid}/{subjectid}/index',[AssController::class,'index'])->name('ass.index');
 Route::get('/ass/{classid}/{subjectid}/create',[AssController::class,'create'])->name('ass.create');
 Route::post('/ass/{classid}/{subjectid}/store',[AssController::class,'store'])->name('ass.store');
-Route::get('/ass/{id}/edit',[AssController::class,'edit'])->name('ass.edit');
+Route::get('/ass/{classid}/{subjectid}/{assid}/edit',[AssController::class,'edit'])->name('ass.edit');
 Route::put('/ass/{id}',[AssController::class,'update'])->name('ass.update');
 Route::post('/ass/{id}/status',[AssController::class,'changeStatus'])->name('ass.status');
 
+
+//Quiz Routes
+Route::get('/quiz/{classid}/{subjectid}/index',[QuizController::class,'index'])->name('quiz.index');
+Route::get('/quiz{classid}/{subjectid}/create',[QuizController::class,'create'])->name('quiz.create');
+Route::post('/quiz/{classid}/{subjectid}/store',[QuizController::class,'store'])->name('quiz.store');
+Route::get('/quiz/{classid}/{subjectid}/{quizid}/edit',[QuizController::class,'edit'])->name('quiz.edit');
+Route::put('/quiz/{id}',[QuizController::class,'update'])->name('quiz.update');
+Route::post('/quiz/{id}/status',[QuizController::class,'changeStatus'])->name('quiz.status');
+Route::get('/quiz/{classid}/{subjectid}/{quizid}/show',[QuizController::class,'show'])->name('quiz.show');
+
+//Question Routes
+Route::get('/question/{classid}/{subjectid}/{quizid}/create',[QuestionsController::class,'create'])->name('question.create');
+Route::post('/question/{classid}/{subjectid}/store',[QuestionsController::class,'store'])->name('question.store');
+Route::get('/question/{classid}/{subjectid}/{questionid}/edit',[QuestionsController::class,'edit'])->name('question.edit');
+Route::put('/question/{classid}/{subjectid}/{questionid}',[QuestionsController::class,'update'])->name('question.update');

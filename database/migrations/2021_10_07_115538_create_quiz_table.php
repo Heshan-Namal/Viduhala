@@ -16,16 +16,15 @@ class CreateQuizTable extends Migration
         Schema::create('Quiz', function (Blueprint $table) {
             $table->id();
             $table->longText('title');
-            $table->integer('points');
-            $table->time('duration')->nullable();
-            $table->enum('status',['published', 'draft', 'passive'])->default('draft');
+            $table->date('date');
+            $table->time('period_starttime');
+            $table->time('period_endtime');
+            $table->enum('status',['published', 'draft', 'complete'])->default('draft');
             $table->unsignedBigInteger('subject_id');
-            $table->unsignedBigInteger('period_id');
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
             $table->foreign('subject_id')->references('id')->on('Subject')->onDelete('cascade');
-            $table->foreign('period_id')->references('id')->on('Period')->onDelete('cascade');
             $table->foreign('class_id')->references('id')->on('Class')->onDelete('cascade');
             $table->foreign('teacher_id')->references('id')->on('Teacher')->onDelete('cascade');
         });

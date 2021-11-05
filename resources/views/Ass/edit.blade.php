@@ -27,7 +27,9 @@
     </div>
 </body>
 </html> -->
-@extends('app')
+@foreach($detail as $key=> $d)
+@extends('layouts.teacher_matirial')
+@endforeach
 
 @section('content')
 <main class="py-4">

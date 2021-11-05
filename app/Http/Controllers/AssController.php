@@ -11,9 +11,15 @@ class AssController extends Controller
 {
     public function create($classid,$subjectid)
     {
-        
+        $detail=DB::table('Subject_class')
+            ->where('Subject_class.class_id','=',$classid)
+            ->where('Subject_class.subject_id','=',$subjectid)
+            ->join('Subject','Subject.id','=','Subject_class.subject_id')
+            ->join('Class','Class.id','=','Subject_class.class_id')
+            ->select('Subject.name as subject','Class.name as class','Class.id as classid','Subject.id as subjectid')
+            ->get();
         //return $classid;
-        return view('Ass.create',compact(['classid','subjectid']));
+        return view('Ass.create',compact(['classid','subjectid','detail']));
         //dd($request);
     }
     public function store(AssStore $req,$classid,$subjectid)
@@ -39,19 +45,38 @@ class AssController extends Controller
         $assments=DB::table('Assignment')
         ->where('Assignment.class_id','=',$classid)
         ->where('Assignment.subject_id','=',$subjectid)
+       
+
         ->get();
+    
+        $detail=DB::table('Subject_class')
+        ->where('Subject_class.class_id','=',$classid)
+        ->where('Subject_class.subject_id','=',$subjectid)
+        ->join('Subject','Subject.id','=','Subject_class.subject_id')
+        ->join('Class','Class.id','=','Subject_class.class_id')
+        ->select('Subject.name as subject','Class.name as class','Class.id as classid','Subject.id as subjectid')
+        ->get();
+            
         
-        //$assments=Assignment::get();
-        return view('Ass.index',compact(['assments','classid','subjectid']));
-        //dd($request);
+        return view('Ass.index',compact(['assments','classid','subjectid','detail']));
+        
+
+       
     }
 
 
-    public function edit($id)
+    public function edit($classid,$subjectid,$assid)
     {
-        $ass=Assignment::find($id); 
+        $detail=DB::table('Subject_class')
+            ->where('Subject_class.class_id','=',$classid)
+            ->where('Subject_class.subject_id','=',$subjectid)
+            ->join('Subject','Subject.id','=','Subject_class.subject_id')
+            ->join('Class','Class.id','=','Subject_class.class_id')
+            ->select('Subject.name as subject','Class.name as class','Class.id as classid','Subject.id as subjectid')
+            ->get();
+        $ass=Assignment::find($assid); 
         // $assments=Assignment::get();
-        return view('Ass.edit',compact('ass'));
+        return view('Ass.edit',compact(['classid','subjectid','ass','detail']));
         //dd($request);
     }
     public function update(Request $req,$id)

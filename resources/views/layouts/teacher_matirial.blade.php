@@ -13,50 +13,39 @@
    </head>
 <body>
   <div class="sidebar">
-    <div class="logo-details">
-      
-        <div class="logo_name">Welcome Back</div>
+    <div class="logo-details ">
+        <div class="logo_name" style="padding-top:35px;padding-left:4rem ;" >
+          <p class="mt-4">{{$d->subject}}</p>
+          <p class="mb-4">{{$d->class}}</p>
+      </div>
+        
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      
-      <li>
-        <a href="#">
-            <i class='bx bx-home' ></i>
-          <span class="links_name">Dashboard</span>
-        </a>
-         <span class="tooltip">Dashboard</span>
-      </li>
-      <li>
-       <a href="/mySubjects/333">
-        <i class='bx bx-book-reader'></i>
-         <span class="links_name">Subjects</span>
+    <li style="padding-top:35px;">
+       <a href="{{route('ass.index',[$classid,$subjectid])}}">
+        <i class='bx bx-book-reader '></i>
+         <span class="links_name">Assesments</span>
        </a>
-       <span class="tooltip">Subjects</span>
+       <span class="tooltip">Assesments</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{route('quiz.index',[$classid,$subjectid])}}">
         <i class='bx bxs-graduation'></i>
          <span class="links_name">Quizes</span>
        </a>
        <span class="tooltip">Quizes</span>
      </li>
-     <li>
-       <a href="#">
-        <i class='fas fa-bell' ></i>
-         <span class="links_name">Notifications</span>
-       </a>
-       <span class="tooltip">Notifications</span>
-     </li>
-     <li>
-       <a href="#">
-        <i class='bx bx-user' ></i>
-         <span class="links_name">My Profile</span>
-       </a>
-       <span class="tooltip">My Profile</span>
-     </li>
      
      <li>
+     <li>
+        <a href="#">
+            <i class='bx bx-home' ></i>
+          <span class="links_name">Links</span>
+        </a>
+         <span class="tooltip">Links</span>
+      </li>
+      <li>
        <a href="#">
          <i class='bx bx-cog' ></i>
          <span class="links_name">Attendance</span>
@@ -130,7 +119,7 @@
      closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
    }
   }
-   $color=['F3C8EF','E1A4F0','EF9696','D6FED6','FFECC7','CFE8FF'];
+   
   
   </script>
   <script>
