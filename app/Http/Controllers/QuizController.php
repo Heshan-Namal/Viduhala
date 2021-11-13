@@ -6,7 +6,7 @@ use App\Models\Questions;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 class QuizController extends Controller
 {
     public function create($classid,$subjectid)
@@ -140,5 +140,13 @@ class QuizController extends Controller
         return $data;
         // return view('front.teacher.subjects',compact('data'));
         //return view('Ass.index',compact('assments'));
+    }
+    public function pdf($classid,$subjectid){
+        $quizes=DB::table('Quiz')
+        ->where('Quiz.class_id','=',$classid)
+        ->where('Quiz.subject_id','=',$subjectid)
+        ->get();
+        $pdf=PDF::loadView('quiz.index',compact('quizes'));
+        return $pdf->download('quizes.pdf');
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Teacher;
-
+use PDF;
 class TeacherController extends Controller
 {
     public function addteacher(Request $req)
@@ -35,23 +35,23 @@ class TeacherController extends Controller
         
 
     }
-    public function updateteacher(Request $req,$teacher_id)
+    public function edit($teacherid)
     {
-        
-        $req->validate([
-            'id'=>'required',
-            'name'=>'required'
-            
-        ]);
-        $teacher=Teacher::find($teacher_id);
-        $teacher->id=$req->get('id');
+        $teacher=Teacher::find($teacherid); 
+        return view('front.teacher.profile.edit',compact('teacher'));
+         //dd($teacher);
+    }
+    public function updateteacher(Request $req,$teacherid)
+    {
+       // dd($req);
+         $teacher=Teacher::find($teacherid);
+        //dd($teacher);
         $teacher->name=$req->get('name'); 
         $teacher->email=$req->get('email');
-        $teacher->password=$req->get('password');
-        $teacher->admin_id=$req->get('admin_id');
+        $teacher->contact=$req->get('contact');
 
         $teacher->save();
-        return $teacher;
+        return redirect()->route('myprofile')->with('message','Your Profile Updated successfully');
         // if($result){
         //     return["result"=>"Data have been saved"];
         // }else{
@@ -70,6 +70,18 @@ class TeacherController extends Controller
         return Admin::find($teacher_id)->getteachers;
     }
     
-    
-    
+    public function pdf(){
+        $teacher=DB::table('Teacher')
+        ->where('Teacher.id','=',333)
+        ->get();
+        $pdf=PDF::loadView('front.teacher.profile.profilepdf',compact('teacher'));
+        return $pdf->download('teacher.pdf');
+    }
+    public function getteacher(){
+        $teacher=DB::table('Teacher')
+        ->where('Teacher.id','=',333)
+        ->get();
+        
+        return view('front.teacher.profile.profile',compact('teacher'));
+    }
 }

@@ -9,7 +9,7 @@ class Teacher extends Model
     // need to declare table in model
     protected $table = "Teacher";
     // this is not necessary
-    protected $fillable = ['id','name','email','password','admin_id'];
+    protected $guarded=[];
 
 
     public function role()

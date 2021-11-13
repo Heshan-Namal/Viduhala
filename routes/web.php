@@ -143,7 +143,7 @@ Route::post('addsubject_teacher',[Subject_teacherController::class,'addsubject_t
 Route::put('updatesubject_teacher/{id}',[Subject_teacherController::class,'updatesubject_teacher']);
 Route::delete('destroy_a_subject_teacher/{id}',[Subject_teacherController::class,'destroy_a_subject_teacher']);
 //get specific teacher subject name  and class name
-Route::get('mySubjects/{id}',[Subject_teacherController::class,'mySubjects'])->name('teacher.subjects');
+Route::get('mySubjects/{teacherid}',[Subject_teacherController::class,'mySubjects'])->name('teacher.subjects');
 //Route::get('mySubjects/{classid}/{subjectid}/matirial',[Subject_teacherController::class,'subjectMatirial'])->name('teacher.matirial');
 
 
@@ -184,3 +184,9 @@ Route::get('/question/{classid}/{subjectid}/{quizid}/create',[QuestionsControlle
 Route::post('/question/{classid}/{subjectid}/store',[QuestionsController::class,'store'])->name('question.store');
 Route::get('/question/{classid}/{subjectid}/{questionid}/edit',[QuestionsController::class,'edit'])->name('question.edit');
 Route::put('/question/{classid}/{subjectid}/{questionid}',[QuestionsController::class,'update'])->name('question.update');
+
+
+Route::get('/profile/{teacherid}/edit',[TeacherController::class,'edit'])->name('profile.edit');
+Route::put('/profile/{teacherid}',[TeacherController::class,'updateteacher'])->name('profile.update');
+Route::get('/pdf',[TeacherController::class,'pdf'])->name('profile.pdf');
+Route::get('/profile',[TeacherController::class,'getteacher'])->name('myprofile');

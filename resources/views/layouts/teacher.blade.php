@@ -49,7 +49,7 @@
        <span class="tooltip">Notifications</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{route('myprofile')}}">
         <i class='bx bx-user' ></i>
          <span class="links_name">My Profile</span>
        </a>

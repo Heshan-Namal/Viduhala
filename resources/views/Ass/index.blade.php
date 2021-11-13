@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">Assesments
                 <div class="text-end">
-                <button class="btn-sm "><a href="{{route('ass.create',[$classid,$subjectid])}}">Add Assesments</a></button>
+                <button class="btn-sm "><a href="{{route('ass.create',[$classid,$subjectid])}}">Add a Assesment</a></button>
                 </div>
 
                 </div>

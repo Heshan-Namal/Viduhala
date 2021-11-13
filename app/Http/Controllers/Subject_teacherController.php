@@ -57,9 +57,9 @@ class Subject_teacherController extends Controller
     }
 
     // using teacher id get techer own subjects
-    public function mySubjects($id){
+    public function mySubjects($teacherid){
         $data=DB::table('Subject_teacher')
-        ->where('Subject_teacher.teacher_id','=',$id)
+        ->where('Subject_teacher.teacher_id','=',$teacherid)
         ->join('Subject','Subject.id','=','Subject_teacher.subject_id')
         ->join('Subject_class','Subject_class.subject_id','=','Subject.id')
         ->join('Class','Class.id','=','Subject_class.class_id')
@@ -67,7 +67,7 @@ class Subject_teacherController extends Controller
         ->orderBy('Class.name')
         ->get();
         
-        return view('front.teacher.subjects',compact(['data','id']));
+        return view('front.teacher.subjects',compact('data'));
         
     }
 

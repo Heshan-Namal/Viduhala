@@ -45,8 +45,6 @@ class AssController extends Controller
         $assments=DB::table('Assignment')
         ->where('Assignment.class_id','=',$classid)
         ->where('Assignment.subject_id','=',$subjectid)
-       
-
         ->get();
     
         $detail=DB::table('Subject_class')
@@ -58,7 +56,11 @@ class AssController extends Controller
         ->get();
             
         
-        return view('Ass.index',compact(['assments','classid','subjectid','detail']));
+        //dd($assments);
+        //dd($detail);
+        //dd($teacherid);
+        
+       return view('Ass.index',compact(['assments','classid','subjectid','detail']));
         
 
        

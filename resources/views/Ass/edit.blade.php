@@ -76,6 +76,7 @@
                            <input type="hidden" class="form-control " name="subject_id" value="{{$ass->subject_id}}">
                           
                        </div>
+                    
                        <div class="form-group mb-4">
                            <label for="assignments">Upload the Assignment</label>
                            <input type="file" class="form-control @error('assignments') is-invalid @enderror" id="assignments" name="assignments">

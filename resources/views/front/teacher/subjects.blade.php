@@ -11,7 +11,7 @@
             @foreach($data as $key=>$sub)
             <div class="col-md-4">
                 <div class="card my-4" style="width: 18rem;background-color:#ebaff5">
-                    <a href="{{route('ass.index',[$sub->classid,$sub->subjectid,$id])}}" style="text-decoration:none;">
+                    <a href="{{route('ass.index',[$sub->classid,$sub->subjectid])}}" style="text-decoration:none;">
                     <div class="card-body text-center">
                         <p>{{$sub->class}}</p>
                         <p>{{$sub->subject}}</p>
