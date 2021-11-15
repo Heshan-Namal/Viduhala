@@ -4,7 +4,7 @@
 
     <div class="login__hero">
       
-        <p>teacher</p>
+        <p>admin</p>
 
     </div>
 @endsection

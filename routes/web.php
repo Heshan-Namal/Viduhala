@@ -30,8 +30,14 @@ use App\Http\Controllers\QuizController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/admin', function () {
+    return view('front.admin.dashboard');
+});
+Route::get('/teacher', function () {
     return view('front.teacher.dashboard');
+});
+Route::get('/student', function () {
+    return view('front.student.dashboard');
 });
 
 
