@@ -1,0 +1,32 @@
+.side__navbar{
+    width: 300px;
+    
+    background: #5f56c6;
+}
+.navbar-nav {
+    padding: 6px 0px;
+    
+}
+
+.navbar-nav .nav__item .nav__link {
+    
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #5f56c6;
+  }
+.navbar-nav .nav__item .nav__link:hover {
+    background: #fff;
+  }
+.navbar-nav .nav__item .nav__link:hover .nav__items,
+.navbar-nav .nav__item .nav__link:hover i {
+  transition: all 0.5s ease;
+  color: #11101d;
+}
+.main__color{
+    background: #5f56c6;
+    color: #5f56c6;
+}
