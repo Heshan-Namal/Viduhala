@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="login__hero">
+<div class="login__hero">
       
     @foreach($teacher as $key=> $t)
 <div class="container rounded bg-white mt-5 mb-5">
@@ -57,8 +57,6 @@
 @endforeach
 </div>
 </div>
-
-    </div>
 @endsection
 
 
