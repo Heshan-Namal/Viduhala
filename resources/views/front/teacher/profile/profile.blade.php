@@ -12,7 +12,7 @@
         
         <div class="col-md-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="{{ URL::to('/assets/front/images/timage.jpeg') }}"><span class="font-weight-bold mt-3">{{$t->name}}</span><span class="text-black-50 my-1">{{$t->email}}</span><span> </span></div>
+                <img class="rounded-circle mt-5" width="150px" src="{{ URL::to('/assets/front/images')}}/{{$t->img}}"><span class="font-weight-bold mt-3">{{$t->name}}</span><span class="text-black-50 my-1">{{$t->email}}</span><span> </span></div>
         </div>
         
         <div class="col-md-8 border-right">

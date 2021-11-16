@@ -109,8 +109,15 @@ class QuizController extends Controller
 
     public function changeStatus(Request $request ,$id)
     {
-        $quiz=Quiz::find($id); 
-        Quiz::where('id',$id)->update(['status'=>$request->status]);
+        //$quiz=Quiz::find($id); 
+        $num=DB::table('Question')
+        ->where('Question.quiz_id','=',$id)
+        ->count();
+        if($num>0){
+            Quiz::where('id',$id)->update(['status'=>$request->status]);
+        }else{
+            return back()->with('message','You didnt Add Questions for Quiz');
+        }
         return back();
         //dd($request);
     }

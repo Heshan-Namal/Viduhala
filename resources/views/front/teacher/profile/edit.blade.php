@@ -10,12 +10,13 @@
     <div class="row">
         <div class="col-md-4 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <form action="{{route('profile.update',$teacher->id)}}" method="POST" enctype="multipart/form-data" > @method('PUT') @csrf
                 @if($teacher->img)
                 <img class="rounded-circle mt-5" width="150px" src="{{ URL::to('/assets/front/images')}}/{{$teacher->img}} ">
                 @else
                 <img class="rounded-circle mt-5" width="150px" src="{{ URL::to('/assets/front/images/defualt.jpg') }}">
                 @endif
-                <input type="file" class="form-control" name="newimg">
+                <input type="file" class="form-control" name="img" id="img">
                 <span class="font-weight-bold mt-3">{{$teacher->name}}</span><span class="text-black-50 my-1">{{$teacher->email}}</span><span> </span></div>
         </div>
         <div class="col-md-8 border-right">
@@ -23,7 +24,6 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Edit Profile</h4>
                 </div>
-                <form action="{{route('profile.update',$teacher->id)}}" method="POST" > @method('PUT') @csrf
                 <div class="row mt-2">
                     <div class="col-md-12"><label class="labels">Name</label>
                     <input type="text" class="form-control" name="name" value="{{$teacher->name}}" ></div>

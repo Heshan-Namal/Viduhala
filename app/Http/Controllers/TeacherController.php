@@ -43,10 +43,19 @@ class TeacherController extends Controller
     }
     public function updateteacher(Request $req,$teacherid)
     {
-       // dd($req);
-         $teacher=Teacher::find($teacherid);
+        $teacher=Teacher::find($teacherid);
+        if($req->has('img')){
+            $path=$req->img;
+            $name = $path->getClientOriginalName();
+            $path->move('assets\front\images',$name);
+        }else{
+            $name=$teacher->img;
+        }
+        
+       // dd($req)
         //dd($teacher);
         $teacher->name=$req->get('name'); 
+        $teacher->img=$name;
         $teacher->email=$req->get('email');
         $teacher->contact=$req->get('contact');
 
