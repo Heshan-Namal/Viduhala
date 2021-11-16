@@ -6,7 +6,18 @@
 <main class="py-4">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+        <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Number Of Quesyions</div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            
+                            <a href="{{route('ass.create',[$classid,$subjectid])}}" class="list-group-item list-group-item-action">Create</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Add Question</div>
                     <!-- @if(count($errors)>0)

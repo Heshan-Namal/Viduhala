@@ -10,7 +10,6 @@
                 <div class="card-header">Quizes
                 <div class="text-end">
                 <button class="btn-sm "><a href="{{route('quiz.create',[$classid,$subjectid])}}">Add a Quiz</a></button>
-                <button class="btn-sm "><a href="{{route('quiz.pdf',[$classid,$subjectid])}}">PDF</a></button>
                 </div>
 
                 </div>
