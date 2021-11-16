@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dashboard - Brand</title>
+    <title>Viduhala</title>
     <link rel="stylesheet" href="{{asset('assets/front/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="{{asset('assets/front/fonts/fontawesome-all.min.css')}}">
@@ -23,10 +23,10 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light gap-2 " id="accordionSidebar" style="font-size: 16px;">
                     <li class="nav-item nav__item "><a class="nav-link nav__link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span class="nav__items" style="font-size: 16px;">Dashboard</span></a></li>
-                    <li class="nav-item nav__item" style="border-color: rgb(255,255,255);"><a class="nav-link nav__link" href="profile.html"><i class="fas fa-user"></i><span class="nav__items" style="font-size: 16px;">Teachers</span></a></li>
-                    <li class="nav-item nav__item"><a class="nav-link nav__link" href="table.html" style="font-size: 16px;"><i class="fas fa-table" style="font-size: 16px;"></i><span class="nav__items">Grades</span></a></li>
-                    <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-book"></i><span class="nav__items" style="font-size: 16px;">Subjects</span></a></li>
-                    <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-graduation-cap"></i><span class="nav__items" style="font-size: 16px;">Students</span></a></li>
+                    <li class="nav-item nav__item" style="border-color: rgb(255,255,255);"><a class="nav-link nav__link" href="profile.html"><i class="fa fa-book"></i><span class="nav__items" style="font-size: 16px;">Subject</span></a></li>
+                    <li class="nav-item nav__item"><a class="nav-link nav__link" href="table.html" style="font-size: 16px;"><i class="fas fa-table" style="font-size: 16px;"></i><span class="nav__items">Quiz</span></a></li>
+                    <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-envelope-o"></i><span class="nav__items" style="font-size: 16px;">Notification</span></a></li>
+                    <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-user"></i><span class="nav__items" style="font-size: 16px;">Profile</span></a></li>
                    
                     
                 </ul>
