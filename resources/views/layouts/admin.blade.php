@@ -27,7 +27,7 @@
                     <li class="nav-item nav__item"><a class="nav-link nav__link" href="table.html" style="font-size: 16px;"><i class="fas fa-table" style="font-size: 16px;"></i><span class="nav__items">Grades</span></a></li>
                     <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-book"></i><span class="nav__items" style="font-size: 16px;">Subjects</span></a></li>
                     <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-graduation-cap"></i><span class="nav__items" style="font-size: 16px;">Students</span></a></li>
-                   
+                    <li class="nav-item nav__item"><a class="nav-link nav__link " href="login.html" style="font-size: 16px;"><i class="fa fa-user"></i><span class="nav__items" style="font-size: 16px;">Profile</span></a></li>
                     
                 </ul>
                 

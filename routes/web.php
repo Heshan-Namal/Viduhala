@@ -39,6 +39,9 @@ Route::get('/teacher', function () {
 Route::get('/student', function () {
     return view('front.student.dashboard');
 });
+Route::get('/adminprofile', function () {
+    return view('front.admin.profile');
+});
 
 
 //Auth
