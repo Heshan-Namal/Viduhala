@@ -1,0 +1,18 @@
+<?php
+
+namespace Database\Seeders;
+use App\Models\Classroom;
+use Illuminate\Database\Seeder;
+
+class ClassroomTableseeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+            Classroom::factory()->count(10)->create();
+    }
+}
