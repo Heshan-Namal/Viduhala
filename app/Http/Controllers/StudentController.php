@@ -12,27 +12,23 @@ use App\Models\Subject;
 use App\Models\student_assignment;
 use App\Models\Student_quiz;
 use App\Models\relink;
-use App\Services\GlobalDataService;
-use App\GlobalServiceProvider;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Validator;
 
 class StudentController extends Controller
 {   
-    private $GlobalDataService;
-    public function __construct(GlobalDataService $globalData) {
-        $this->globalData = $globalData;
-    }
-    public function index()
-    {
-        $student=$this->globalData->getGlobalData();
+    // public function index()
+    // {
+    //     $student=$this->globalData->getGlobalData();
 
-        return view('index');
-    }
+    //     return view('index');
+    // }
     public function addstudent(Request $req)
     {
         $req->validate([
@@ -96,8 +92,6 @@ class StudentController extends Controller
 
     public function getSubjectsList($student_id)
     {
-
-
         $data=DB::table('Student')
         ->where('Student.id','=',$student_id)
         ->join('Class','Class.id','=','Student.class_id')
@@ -106,20 +100,34 @@ class StudentController extends Controller
         ->select('Subject.name as subject','Subject.id as subject_id','Class.name as class','Class.id as class_id')
         ->orderBy('subject_id','desc')
         ->get();
-        return view('student_subject.mysubjects',compact('data'));
-        //print_r($data);
+        return view('Student.student_subject.mysubjects',compact('data'));
+        //dd($data);
+    }
+
+    public function getSubjectWeekList($class_id,$subject_id){
+        
+        return view('Student.student_subject.subject_week',compact(['class_id','subject_id']));
+    }
+
+    public function getSubjectWeekDayList($class_id,$subject_id,$term_id,$week_id){
+        return view('Student.student_subject.subject_week_day',compact(['class_id','subject_id','term_id','week_id']));
     }
 
     public function getSubjectData($class_id,$subject_id)
     {
         $data = Subject::where('id',$subject_id)->get();
-        return view('student_subject.subject',compact(['data','class_id','subject_id']));
+        return view('Student.student_subject.subject',compact(['data','class_id','subject_id']));
     }  
 
+    public function getLessonData($class_id,$subject_id)
+    {
+        $data = Subject::where('id',$subject_id)->get();
+        return view('Student.student_subject.subject',compact(['data','class_id','subject_id']));
+    }
 
     // student_quiz 
 
-    public function getquizList($class_id,$subject_id) //class_id,subject_id
+    public function getquizList($class_id,$subject_id,$term,$week,$day) 
     {
     
         $quizList = DB::table('Quiz')
@@ -128,11 +136,14 @@ class StudentController extends Controller
                             ->join('Subject', 'Subject.id', '=', 'Quiz.subject_id')
                             ->where('class_id',$class_id)
                             ->where('subject_id',$subject_id)
+                            ->where('term',$term)
+                            ->where('week',$week)
+                            ->where('day',$day)
                             ->orderBy('Quiz.id','desc')
                             ->get();
 
-        $student=$this->globalData->getGlobalData();
-        $student_id=$student[0]['id'];
+        $student=Auth::user();
+        $student_id=$student->id;
 
         $completed_quizes=DB::table('Student_quiz')
                             ->join('Quiz','Quiz.id', '=', 'Student_quiz.quiz_id')
@@ -161,14 +172,15 @@ class StudentController extends Controller
         if(empty($attemptedquizarr)) $attemptedquizarr=Null;        
         if(empty($quizListarr)) $quizListarr=Null;
 
-        return view('student_quiz.quizList',compact(['quizList','class_id','subject_id','quizListarr','attemptedquizarr']));
+        return view('Student.student_quiz.quizList',compact(['quizList','class_id','subject_id','quizListarr','attemptedquizarr']));
     }
+
 
     public function showquiz($quiz_id) //class_id,subject_id
     {
         $quiz=Quiz::find($quiz_id);
         $questions=Questions::where('quiz_id',$quiz_id)->get();
-         return view('student_quiz.quiz',compact(['quiz','questions','quiz_id'])); 
+         return view('Student.student_quiz.quiz',compact(['quiz','questions','quiz_id'])); 
     }
 
 
@@ -179,8 +191,8 @@ class StudentController extends Controller
         $marks_per_q=5;
         $quiz=Quiz::find($quiz_id);
         $questions=Questions::where('quiz_id',$quiz_id)->get();
-        $student=$this->globalData->getGlobalData();
-        $student_id=$student[0]['id'];
+        $student=Auth::user();
+        $student_id=$student->id;
 
         $data = $request->all();
         $answers_array = [];
@@ -214,7 +226,7 @@ class StudentController extends Controller
         $completed_quiz=Student_quiz::where('student_id',$student_id)->get();
 
 
-        return view('student_quiz.quizresult',compact(['quiz','questions','marks','data','answers_array','correct_answers_array','question_count']));
+        return view('Student.student_quiz.quizresult',compact(['quiz','questions','marks','data','answers_array','correct_answers_array','question_count']));
     }
 
 
@@ -231,8 +243,8 @@ class StudentController extends Controller
                         ->select(['Assignment.*','Subject.name as subject','Class.name as class','Teacher.name as teacher'])
                         ->get();
 
-        $student=$this->globalData->getGlobalData();
-        $student_id=$student[0]['id'];
+        $student=Auth::user();
+        $student_id=$student->id;
 
         $uploaded_assignments=DB::table('Assignment_student')
                                 ->join('Assignment','Assignment.id', '=', 'Assignment_student.assignment_id')
@@ -260,7 +272,7 @@ class StudentController extends Controller
         }
         if(empty($mergedAssList)) $mergedAssList=Null;        
         if(empty($assignmentListarr)) $assignmentListarr=Null;
-        return view('student_assignment.assignments',compact(['assignmentList','assignmentListarr','class_id','subject_id','uploaded_assignmentsarr','mergedAssList']));
+        return view('Student.student_assignment.assignments',compact(['assignmentList','assignmentListarr','class_id','subject_id','uploaded_assignmentsarr','mergedAssList']));
     }
     
 
@@ -270,7 +282,7 @@ class StudentController extends Controller
         $class_id=$class_id;
         $subject_id=$subject_id;
         $assignment=Assignment::find($assignment_id);    
-        return view('student_assignment.uploadHomework',compact(['assignment_id','assignment','class_id','subject_id']));
+        return view('Student.student_assignment.uploadHomework',compact(['assignment_id','assignment','class_id','subject_id']));
     }
 
  
@@ -278,11 +290,11 @@ class StudentController extends Controller
     {
         $class_id=$class_id;
         $subject_id=$subject_id;
-        $student=$this->globalData->getGlobalData();
-        $student_id=$student[0]['id'];
+        $student=Auth::user();
+        $student_id=$student->id;
         $assignment=Assignment::find($assignment_id);
         $uploaded_assignment=student_assignment::where([['assignment_id',$assignment_id],['student_id',$student_id]])->first();
-        return view('student_assignment.editHomework',compact(['assignment_id','assignment','class_id','subject_id','uploaded_assignment']));
+        return view('Student.student_assignment.editHomework',compact(['assignment_id','assignment','class_id','subject_id','uploaded_assignment']));
 
     }
 
@@ -294,8 +306,8 @@ class StudentController extends Controller
          'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
  
         ]);
-        $student=$this->globalData->getGlobalData();
-        $student_id=$student[0]['id'];
+        $student=Auth::user();
+        $student_id=$student->id;
  
         $submission=student_assignment::where([['assignment_id',$assignment_id],['student_id',$student_id]])->first();
 
@@ -307,7 +319,7 @@ class StudentController extends Controller
             $submission->submission_name=$name;
             $submission->submission_path=$path;
             $submission->save();
-            return redirect()->route('student.homeworklist',[$class_id,$subject_id])->with('message', 'submission Has been updated successfully');
+            return redirect()->route('Student.student.homeworklist',[$class_id,$subject_id])->with('message', 'submission Has been updated successfully');
         
         }else{
 
@@ -320,7 +332,7 @@ class StudentController extends Controller
                     'submission_path'=>$path
                 ]
             );
-            return redirect()->route('student.homeworklist',[$class_id,$subject_id])->with('message', 'File Has been uploaded successfully');
+            return redirect()->route('Student.student.homeworklist',[$class_id,$subject_id])->with('message', 'File Has been uploaded successfully');
         }
 
  
@@ -328,6 +340,6 @@ class StudentController extends Controller
     public function getRecordingslist($class_id,$subject_id)
     {
         $recordings=relink::where([['class_id',$class_id],['subject_id',$subject_id]])->orderByDesc('date')->get();
-        return view('student_relink.relinklist',compact(['recordings','class_id','subject_id']));
+        return view('Student.student_relink.relinklist',compact(['recordings','class_id','subject_id']));
     }
 }

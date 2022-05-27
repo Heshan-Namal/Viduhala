@@ -1,13 +1,12 @@
-@foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
-@endforeach
+
+@extends('layouts.MasterDashboard')
 
 @section('content')
-<main class="py-4">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+<main class="content">
+    <div class="row row-col-2">
+        <div class="col justify-content-center">
+            <div class="row-md-12">
+                <div class="card wide-card">
                     <div class="card-header">Add Quiz</div>
                     <!-- @if(count($errors)>0)
                         @foreach($errors->all() as $error)
@@ -45,15 +44,22 @@
                                     </span>
                             @enderror
                        </div>
-                       <!-- <div class="form-group mb-2">
-                           <label for="name">Period End time</label>
-                           <input type="time" class="form-control @error('period_endtime') is-invalid @enderror" name="period_endtime">
-                           @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                       </div> -->
+
+                       <div class="form-group mb-2">
+                           <label for="name">term</label>
+                           <input type="text" class="form-control @error('period_starttime') is-invalid @enderror" name="term">
+                       </div>
+
+                       <div class="form-group mb-2">
+                           <label for="name">week</label>
+                           <input type="text" class="form-control @error('period_starttime') is-invalid @enderror" name="week">
+                       </div>
+
+                       <div class="form-group mb-2">
+                           <label for="name">day</label>
+                           <input type="text" class="form-control @error('period_starttime') is-invalid @enderror" name="day">
+                       </div>
+                       
                        <div class="form-group mb-4">
                            <!-- <label for="name">Class_id</label> -->
                            <input type="number" class="form-control " name="class_id" value="{{$classid}}">

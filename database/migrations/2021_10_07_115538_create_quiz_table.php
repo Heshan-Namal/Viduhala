@@ -19,6 +19,9 @@ class CreateQuizTable extends Migration
             //$table->integer('points');
             $table->string('validity');
             $table->date('date');
+            $table->integer('term');
+            $table->integer('week');
+            $table->string('day');
             $table->enum('status',['published', 'draft', 'passive'])->default('draft');
             $table->unsignedBigInteger('subject_id');
            // $table->unsignedBigInteger('period_id');

@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => date_default_timezone_get(),
+    'timezone' => env("APP_TIMEZONE", "UTC"),
 
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        App\Providers\GlobalServiceProvider::class
+       // App\Providers\GlobalServiceProvider::class
 
     ],
 

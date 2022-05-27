@@ -1,12 +1,12 @@
 @foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
+@extends('layouts.MasterDashboard')
 @endforeach
 @section('content')
-<div class="container">
+<div class="content">
   <main class="py-4">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card quiz-card">
                 <div class="card-header">Assesments
                 <div class="text-end">
                 <button class="btn-sm "><a href="{{route('ass.create',[$classid,$subjectid])}}">Add a Assesment</a></button>

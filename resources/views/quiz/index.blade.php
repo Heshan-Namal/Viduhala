@@ -1,12 +1,11 @@
-@foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
-@endforeach
+@extends('layouts.MasterDashboard')
+
 @section('content')
 <div class="container">
   <main class="py-4">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
+        <div class="">
+            <div class="card wide-card">
                 <div class="card-header">Quizes
                 <div class="text-end">
                 <button class="btn-sm "><a href="{{route('quiz.create',[$classid,$subjectid])}}">Add a Quiz</a></button>

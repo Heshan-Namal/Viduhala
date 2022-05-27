@@ -15,9 +15,7 @@ class GlobalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(GlobalDataService::class, function () {
-            return new GlobalDataService;
-        });
+        
     }
 
     /**
@@ -27,8 +25,6 @@ class GlobalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view) {
-            $view->with('gdata',GlobalDataService::getGlobalData());
-        });
+
     }
 }

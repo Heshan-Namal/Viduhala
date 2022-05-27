@@ -1,13 +1,12 @@
-@foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
-@endforeach
+@extends('layouts.MasterDashboard')
+
 
 @section('content')
-<main class="py-4">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+
+    <div class="content">
+        <div class="row">
+            <div class="col">
+                <div class="card wide-card">
                 <div class="card-header">{{$quiz->title}}
                 <div class="text-end">
                         <p>{{$quiz->date}}</p>
@@ -49,5 +48,5 @@
             </div>
         </div>
     </div>
-</main>
+
 @endsection

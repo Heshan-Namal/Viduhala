@@ -1,5 +1,5 @@
 @foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
+@extends('layouts.MasterDashboard')
 @endforeach
 
 @section('content')
@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-4">
-                <div class="card">
+                <div class="card wide-card">
                     <div class="card-header">Menu</div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card">
+                <div class="card wide-card">
                     <div class="card-header">Add a Assesments</div>
                     <!-- @if(count($errors)>0)
                         @foreach($errors->all() as $error)

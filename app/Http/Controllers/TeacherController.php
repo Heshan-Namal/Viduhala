@@ -72,7 +72,7 @@ class TeacherController extends Controller
     public function teacher()
     {
         
-        return view('layouts.teacher');
+        return view('layouts.MasterDashboard');
     }  
     
     

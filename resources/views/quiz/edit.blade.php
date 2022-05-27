@@ -1,13 +1,11 @@
-@foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
-@endforeach
+@extends('layouts.MasterDashboard')
 
 @section('content')
-<main class="py-4">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
+<main class="content">
+    <div class="row row-col-2">
+        <div class="col-sm-6">
+            <div class="">
+                <div class="card wide-card">
                     <div class="card-header">Edit Quiz</div>
                     <!-- @if(count($errors)>0)
                         @foreach($errors->all() as $error)

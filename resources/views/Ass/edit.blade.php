@@ -28,7 +28,7 @@
 </body>
 </html> -->
 @foreach($detail as $key=> $d)
-@extends('layouts.teacher_matirial')
+@extends('layouts.MasterDashboard')
 @endforeach
 
 @section('content')
@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card quiz-card">
                     <div class="card-header">Edit Assesments</div>
                     <!-- @if(count($errors)>0)
                         @foreach($errors->all() as $error)

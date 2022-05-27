@@ -94,24 +94,27 @@ Route::put('updatestudent/{id}',[StudentController::class,'updatestudent']);
 Route::delete('destroy_a_student/{id}',[StudentController::class,'destroy_a_student']);
 
 //student_subject routes
-Route::get('/index',[StudentController::class,'index'])->name('student.index');
-Route::get('/mysubjects/{student_id}',[StudentController::class,'getSubjectsList'])->name('student.mysubjects');
-Route::get('/subject/{class_id}/{subject_id}',[StudentController::class,'getSubjectData'])->name('student.subject');
+//Route::get('/index',[StudentController::class,'index'])->name('student.index');
+Route::get('/mysubjects/{student_id}',[StudentController::class,'getSubjectsList'])->name('Student.student.mysubjects');
+Route::get('/subject/{class_id}/{subject_id}',[StudentController::class,'getSubjectWeekList'])->name('Student.student.subject_week');
+Route::get('/subject/{class_id}/{subject_id}/{term_id}/{week_id}',[StudentController::class,'getSubjectWeekDayList'])->name('Student.student.subject_week_day');
+Route::get('/subject/{class_id}/{subject_id}',[StudentController::class,'getSubjectData'])->name('Student.student.subject');
+
 
 //student_assignment routes
-Route::get('/homework/{class_id}/{subject_id}',[StudentController::class,'getAssignmentList'])->name('student.homeworklist');
-Route::get('/uploadHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'uploadHomework'])->name('student.uploadHomework');
-Route::get('/editHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'editHomework'])->name('student.editHomework');
-Route::post('/storeHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'storeHomework'])->name('student.storeHomework');
+Route::get('/homework/{class_id}/{subject_id}',[StudentController::class,'getAssignmentList'])->name('Student.student.homeworklist');
+Route::get('/uploadHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'uploadHomework'])->name('Student.student.uploadHomework');
+Route::get('/editHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'editHomework'])->name('Student.student.editHomework');
+Route::post('/storeHomework/{class_id}/{subject_id}/{assignment_id}', [StudentController::class, 'storeHomework'])->name('Student.student.storeHomework');
 
 //student_quiz routes
-Route::get('/myquizzes/{class_id}/{subject_id}',[StudentController::class,'getquizList'])->name('student.quizlist');
-Route::get('/quiz/{quiz_id}',[StudentController::class,'showquiz'])->name('student.showquiz');
-Route::post('/checkquiz/{quiz_id}',[StudentController::class,'checkquiz'])->name('student.checkquiz');
-Route::get('/resultquiz/{quiz_id}',[StudentController::class,'checkquiz'])->name('student.quizresult');
+Route::get('/myquizzes/{class_id}/{subject_id}/{term}/{week}/{day}',[StudentController::class,'getquizList'])->name('Student.student.quizlist');
+Route::get('/quiz/{quiz_id}',[StudentController::class,'showquiz'])->name('Student.student.showquiz');
+Route::post('/checkquiz/{quiz_id}',[StudentController::class,'checkquiz'])->name('Student.student.checkquiz');
+Route::get('/resultquiz/{quiz_id}',[StudentController::class,'checkquiz'])->name('Student.student.quizresult');
 
 //student_links routes
-Route::get('/recordings/{class_id}/{subject_id}',[StudentController::class,'getRecordingsList'])->name('student.Recordinglist');
+Route::get('/recordings/{class_id}/{subject_id}',[StudentController::class,'getRecordingsList'])->name('Student.student.Recordinglist');
 
 // Teacher_role routes
 Route::post('addteacher_role',[Teacher_roleController::class,'addteacher_role']);
